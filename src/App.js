@@ -8,7 +8,10 @@ function App() {
       <div className="container">
       <Weather defaultCity="Orlando"/>
       <footer>
-      <a href="https//github.com/react-weather-app"></a>
+        Project coded by Courtney Daniels on{" "} 
+          <a href="https://github.com/Court121/react-weather-app"
+        target="blank">
+          Github </a>
       </footer>
       </div>
     </div>
