@@ -1,5 +1,4 @@
 import React,{useState} from "react";
-import FormattedDate from "./FormattedDate";
 import "./Weather.css"
 import axios from "axios";
 
@@ -25,50 +24,39 @@ export default function Weather(props){
         let apiKey = "9e495337e0feec7$ab53c0d9ca024297c";
      let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=imperial`;
     axios.get(url).then(handleResponse);}
+
+    function submitSearch(event) {
+        event.preventDefault();
+        search();
+        }
+
+        function updateCity(event) {
+            event.preventDefault();
+            setCity(event.target.value);
+            
+        }
+
+        if(weatherData.ready) {
+            return (
+            <div className="Weather">
+                <form onSubmit={submitSearch}>
+                <div className="row">
+                    <div className="col-9">
+                    <input type="search" placeholder="Enter a city" className="form-control" onChange={updateCity} />
+                </div>
+                <div className="col-3">
+                    <input type="submit" value="Search" className="button-primary w-100" />
+                    </div>
+                </div>
+                </form>
+                <WeatherInfo data={weatherData} />
+                <WeatherForecast city={weatherData.city} />
+                
+            </div>
+        );
+    } else{
+        search();
+    return "Loading..."
+    }
+    }
     
-     return(
-         <div className="Weather">
-             <form> 
-                 <div className="row">
-                 <div className="col-9">  
-            <input type="search" placeholder="Enter a city"
-            className="form-control"
-            />
-           </div> 
-            <div className="col-3">
-            <input type="submit" value="Search" 
-            className="btn btn-primary"/>
-            </div>
-            </div>
-             </form>
-         <h1>Orlando</h1>
-        <ul>
-        <li>Wednsday 7:00pm</li>
-        <li>Mostly Cloudy</li>
-        </ul>
-        <div className="row">
-        <div className="col-6">
-            <img src="https://ssl.gstatic.com/onebox/weather/64/sunny.png"
-            alt="Sunny"/>
-            57 
-        </div>
-        <div className="col-6">
-            <ul>
-                <li>
-                    Precipitation: 1%
-                </li>
-                <li>
-                    Humidity: 69%
-                </li>
-                <li>
-                Wind: 3 km/h
-                </li>
-            </ul>
-        </div>
-        </div>
-
-       
-
-
-        </div>
-     )};
