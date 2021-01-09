@@ -26,7 +26,7 @@ if (loaded) {
     </div>
     );
 } else {
-    let apiKey = "9e495337e0feec7$ab53c0d9ca024297c";
+    let apiKey = "9e495337e0feec7ab53c0d9ca024297c"
     let apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiKey}&units=imperial`;
     axios.get(apiUrl).then(revealForecast);
 
