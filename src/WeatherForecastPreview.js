@@ -11,7 +11,7 @@ export default function WeatherForecastPreview(props) {
 
     function temperature() {
         let temperature = Math.round(props.data.main.temp);
-        return `${temperature}°F`;
+        return `${temperature}°C`;
     }
     
     return (

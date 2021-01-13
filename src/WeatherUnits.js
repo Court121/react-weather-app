@@ -1,48 +1,44 @@
 import React, { useState } from "react";
 
-
-export default function WeatherUnits(props) {
-    let [unit, setUnit] = useState("fahrenheit");
-function convertToCelsius(event) {
-    event.preventDefault();
-    setUnit("celsius");
-}
-
-function convertToFahrenheit(event) {
+export default function WeatherTemperature(props) {
+  const [unit, setUnit] = useState("celsius");
+  function showFahrenheit(event) {
     event.preventDefault();
     setUnit("fahrenheit");
-}
+  }
 
-    if (unit === "fahrenheit") { 
-        return (
-        <div className="WeatherUnits">
-        <span className="temp">
-        {Math.round(props.fahrenheit)}
+  function showCelsius(event) {
+    event.preventDefault();
+    setUnit("celsius");
+  }
+
+  function fahrenheit() {
+    return (props.celsius * 9) / 5 + 32;
+  }
+
+  if (unit === "celsius") {
+    return (
+      <div className="WeatherUnits">
+        <span className="temperature">{Math.round(props.celsius)}</span>
+        <span className="unit">
+          °C |{" "}
+          <a href="/" onClick={showFahrenheit}>
+            °F
+          </a>
         </span>
-        <span className="fahrenheit-unit">
-         °F
-        </span> | <span className="celsius-unit">
-           <a href="/" onClick={convertToCelsius}> °C </a>
-        </span>
-        </div>
+      </div>
     );
-} else {
-    let celsius = (props.fahrenheit - 32) * 5/9 
-     return (
-        <div className="WeatherUnits">
-        <span className="temp">
-        {Math.round(celsius)}
+  } else {
+    return (
+      <div className="WeatherUnits">
+        <span className="temperature">{Math.round(fahrenheit())}</span>
+        <span className="unit">
+          <a href="/" onClick={showCelsius}>
+            °C
+          </a>{" "}
+          | °F
         </span>
-        <span className="fahrenheit-unit">
-            <a href="/" onClick={convertToFahrenheit}>
-         °F</a>
-        </span> | <span className="celsius-unit">
-         °C 
-        </span>
-        </div>
-     );
-}
-
-
-   
+      </div>
+    );
+  }
 }
